@@ -1,24 +1,25 @@
 {
-  "name": "steamapitests",
-  "version": "1.0.0",
-  "description": "Little project to test steam API",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Pourbaix/SteamAPITests.git"
-  },
-  "author": "Pourbaix Michaël & Guyot Léopold",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Pourbaix/SteamAPITests/issues"
-  },
-  "homepage": "https://github.com/Pourbaix/SteamAPITests#readme",
-  "dependencies": {
-    "axios": "^1.4.0",
-    "axios-cookiejar-support": "^4.0.6",
-    "tough-cookie": "^4.1.2"
-  }
+	"name": "steamapitests",
+	"version": "1.0.0",
+	"description": "Little project to test steam API",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Pourbaix/SteamAPITests.git"
+	},
+	"author": "Pourbaix Michaël & Guyot Léopold",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Pourbaix/SteamAPITests/issues"
+	},
+	"homepage": "https://github.com/Pourbaix/SteamAPITests#readme",
+	"dependencies": {
+		"axios": "^1.4.0",
+		"axios-cookiejar-support": "^4.0.6",
+		"dotenv": "^16.0.3",
+		"tough-cookie": "^4.1.2"
+	}
 }
