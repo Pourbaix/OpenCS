@@ -56,12 +56,25 @@ class SteamAPI {
 	// 		}
 	// 	);
 	// }
+
+	async getUserSummary(userid) {
+		let response = await axios.get(
+			main_route + "ISteamUser/GetPlayerSummaries/v2/",
+			{
+				params: {
+					key: this.api_key,
+					steamids: userid,
+				},
+			}
+		);
+		return response;
+	}
 }
 
 async function testClass() {
 	let test = new SteamAPI(process.env.STEAM_API_KEY);
-	let res = await test.getUserStatsForGame("76561198074295219");
-	console.log(res);
+	let res = await test.getUserSummary("76561198074295219");
+	console.log(res.data.response);
 }
 
 testClass();

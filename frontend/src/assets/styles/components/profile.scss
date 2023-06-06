@@ -1,0 +1,34 @@
+.card {
+	backdrop-filter: blur(2px);
+	background: rgba(255, 255, 255, 0.1);
+	padding: 25px;
+	border-radius: 4px;
+	display: flex;
+	flex-direction: row;
+	cursor: pointer;
+	text-decoration: none;
+	color: rgba(255, 255, 255, 0.87);
+}
+
+.card:hover {
+	outline: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.pp {
+	margin-right: 25px;
+	img {
+		width: 150px;
+		height: 150px;
+		border-radius: 50%;
+	}
+}
+
+.info {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin-right: 15px;
+	* {
+		margin: 0;
+	}
+}
