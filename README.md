@@ -1,10 +1,10 @@
-# SteamAPITests
+# OpenCS
 
-Simple project to test Steam Web API and understand what is possible.
+## Deep Counter Strike statistics analyzer
+
+Project that aims to deeply analyse Counter Strike matches.
 
 Currently using:
 
--   Axios
--   Axios cookie-jar
--   Tough Cookie
--   NodeJS 16.17.0
+-   Python 3.10.11
+-   FastAPI 0.96.0
