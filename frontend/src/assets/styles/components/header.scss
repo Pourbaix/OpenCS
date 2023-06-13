@@ -1,14 +1,26 @@
-.container {
+.header_container {
 	width: 100%;
-	max-width: 1800px;
 	display: flex;
 	justify-content: center;
+	background: var(--header-bg);
 	backdrop-filter: blur(2px);
-	background: rgba(255, 255, 255, 0.1);
-	overflow: hidden;
-}
+	.content {
+		width: 100%;
+		max-width: 1800px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 25px;
+		overflow: hidden;
+		padding-left: 80px;
+	}
 
-.title {
-	font-size: 20px;
-	margin: 0 15px;
+	.title {
+		font-size: 22px;
+		font-family: csfont;
+		color: var(--bright-primary);
+		animation: appear;
+	}
+	@keyframes appear {
+	}
 }

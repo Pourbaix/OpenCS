@@ -2,12 +2,12 @@ import "../assets/styles/components/header.scss";
 
 function Header() {
 	return (
-		<div className="container">
-			<div className="nav_section"></div>
-			<div className="title">
-				<h2>NavBar</h2>
+		<div className="header_container">
+			<div className="content">
+				<div className="title">
+					<h2>OpenCS</h2>
+				</div>
 			</div>
-			<div className="nav_section"></div>
 		</div>
 	);
 }

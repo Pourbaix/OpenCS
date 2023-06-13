@@ -5,13 +5,18 @@
 
 	color-scheme: light dark;
 	color: rgba(255, 255, 255, 0.87);
-	background-color: #242424;
+	background-color: var(--main-bg);
 
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
+
+	--main-bg: #262626;
+	--header-bg: #1a1a1a;
+	--bright-primary: #dcdcdc;
+	--bright-secondary: #676767;
 }
 
 #root {
@@ -36,4 +41,9 @@ h3 {
 
 p {
 	margin: 5px 0;
+}
+
+@font-face {
+	font-family: csfont;
+	src: url("./assets/fonts/cs_regular.ttf");
 }

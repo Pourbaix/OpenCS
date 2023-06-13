@@ -1,37 +1,41 @@
-.page {
+.player_stats_page {
 	width: 100vw;
-	max-width: 1800px;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	gap: 25px;
-}
-
-.search {
-	margin: 10px;
-	display: flex;
-	gap: 15px;
-	align-items: center;
-	input {
-		border: 1px solid rgba(255, 255, 255, 0.05);
-		padding: 10px;
-		border-radius: 5px;
-		font-size: 18px;
-	}
-	input:focus {
-		border: 1px solid rgba(255, 255, 255, 0.2);
-		outline: none;
-	}
-	button {
-		background: none;
-		border: none;
-		font-size: 18px;
-		border: 1px solid rgba(255, 255, 255, 0.05);
-		padding: 10px;
-		border-radius: 5px;
-		cursor: pointer;
-	}
-	button:hover {
-		background: rgba(255, 255, 255, 0.05);
+	.player_stats_content {
+		display: flex;
+		gap: 25px;
+		align-items: center;
+		flex-direction: column;
+		padding-left: 80px;
+		width: calc(100% - 80px);
+		.search {
+			margin: 10px;
+			display: flex;
+			gap: 15px;
+			align-items: center;
+			input {
+				border: 1px solid rgba(255, 255, 255, 0.05);
+				padding: 10px;
+				border-radius: 5px;
+				font-size: 18px;
+			}
+			input:focus {
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				outline: none;
+			}
+			button {
+				background: none;
+				border: none;
+				font-size: 18px;
+				border: 1px solid rgba(255, 255, 255, 0.05);
+				padding: 10px;
+				border-radius: 5px;
+				cursor: pointer;
+			}
+			button:hover {
+				background: rgba(255, 255, 255, 0.05);
+			}
+		}
 	}
 }

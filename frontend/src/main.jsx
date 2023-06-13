@@ -1,13 +1,23 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
-import AccountDetails from "./pages/AccountsDetails.jsx";
+import PlayerStats from "./pages/PlayerStats.jsx";
+import Home from "./pages/Home.jsx";
+import NotFound from "./pages/NotFound.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <AccountDetails />,
+		element: <Home />,
+	},
+	{
+		path: "/playerStats",
+		element: <PlayerStats />,
+	},
+	{
+		path: "*",
+		element: <NotFound />,
 	},
 ]);
 

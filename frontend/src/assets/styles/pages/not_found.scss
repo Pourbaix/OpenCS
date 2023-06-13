@@ -1,0 +1,19 @@
+.not_found_container {
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 25px;
+	.not_found_content {
+		padding-left: 80px;
+		width: calc(100% - 80px);
+		p {
+			font-size: 80px;
+		}
+		.not_found_emoji {
+			max-width: 120px;
+			height: auto;
+			aspect-ratio: 1;
+		}
+	}
+}

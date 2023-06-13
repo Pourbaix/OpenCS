@@ -1,0 +1,20 @@
+.home_logo_container {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 1;
+	cursor: pointer;
+	.logo {
+		transition: 0.5s fill;
+		fill: var(--bright-secondary);
+	}
+	.enabled {
+		.logo {
+			fill: var(--bright-primary);
+		}
+	}
+}
+.home_logo_container:hover {
+	.logo {
+		fill: var(--bright-primary);
+	}
+}

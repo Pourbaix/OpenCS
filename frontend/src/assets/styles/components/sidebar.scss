@@ -1,0 +1,21 @@
+.sidebar_container {
+	height: 100vh;
+	position: fixed;
+	display: flex;
+	left: 0;
+	top: 0;
+	background: var(--header-bg);
+	width: 80px;
+	padding-top: 75px;
+	z-index: 5;
+	.content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 30px;
+		width: 100%;
+		.nav_element {
+			width: 40%;
+		}
+	}
+}
