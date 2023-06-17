@@ -56,7 +56,7 @@ function Home() {
 							<div className="image">Insert image</div>
 							<div className="link">
 								<TryButton
-									text={"See your stats"}
+									text={"Check your stats"}
 									callBack={redirectToPlayerStats}
 								/>
 							</div>

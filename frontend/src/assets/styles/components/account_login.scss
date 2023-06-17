@@ -2,28 +2,12 @@
 	display: flex;
 	flex-direction: column;
 	min-width: max-content;
-	border-radius: 5px;
-	overflow: hidden;
-	.nav {
-		display: flex;
-		z-index: 2;
+	.main_header {
 		width: 100%;
-		button {
-			padding: 10px 35px;
-			background: none;
-			cursor: pointer;
-			font-family: russo;
-			font-size: 20px;
-			border: 1px solid white;
-			width: 50%;
-			min-width: max-content;
-		}
-	}
-	.main_content {
-		width: 100%;
-		height: auto;
 		position: relative;
 		display: flex;
+		border-radius: 5px;
+		overflow: hidden;
 		.gradient_bg_layer {
 			position: absolute;
 			top: 0;
@@ -52,6 +36,36 @@
 			h2 {
 				margin: 0;
 			}
+		}
+	}
+	.login_methods {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		margin-top: 25px;
+		.method {
+			width: max-content;
+			height: max-content;
+			display: flex;
+			flex-direction: row;
+			cursor: pointer;
+		}
+		#steam {
+			background: rgba(0, 0, 0, 1);
+			padding: 10px 15px;
+			gap: 15px;
+			border-radius: 10px;
+			transition: all 0.25s;
+			img {
+				height: 35px;
+				width: auto;
+				aspect-ratio: 1;
+			}
+		}
+		#steam:hover {
+			background: rgba(0, 0, 0, 0.25);
+			transform: scale(1.05);
 		}
 	}
 }
