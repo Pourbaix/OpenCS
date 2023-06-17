@@ -1,7 +1,7 @@
 .home_logo_container {
 	width: 100%;
-	height: auto;
-	aspect-ratio: 1;
+	max-height: max-content;
+	display: flex;
 	cursor: pointer;
 	.logo {
 		transition: 0.5s fill;

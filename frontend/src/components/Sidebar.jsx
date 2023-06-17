@@ -3,40 +3,53 @@ import HomeLogo from "../atoms/HomeLogo.jsx";
 import DemoLogo from "../atoms/DemoLogo.jsx";
 import PlayerStatsLogo from "../atoms/PlayerStatsLogo.jsx";
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-function Sidebar(props) {
+function Sidebar() {
 	const [navsHighlight, setNavsHighlight] = useState({
 		Home: false,
 		Demo: false,
 		Player: false,
 	});
+	let location = useLocation();
+
+	// Small piece of code to change the style of the current page
 	useEffect(() => {
-		if (props.highlighted) {
-			let local = {
-				Home: false,
-				Demo: false,
-				Player: false,
-			};
-			for (let i of Object.keys(local)) {
-				if (props.highlighted == i) {
-					local[i] = true;
-				}
+		console.log(location);
+		let local = {
+			Home: false,
+			Demo: false,
+			Player: false,
+		};
+		let transcript = {
+			Home: ["/"],
+			Demo: ["/demo"],
+			Player: ["/playerStats"],
+		};
+		for (let i of Object.keys(transcript)) {
+			if (transcript[i].includes(location.pathname)) {
+				local[i] = true;
 			}
-			setNavsHighlight(local);
 		}
-	}, []);
+		setNavsHighlight(local);
+	}, [location]);
 	return (
 		<div className="sidebar_container">
 			<div className="content">
 				<Link className="nav_element" to="/">
-					<HomeLogo highlight={navsHighlight.Home} />
+					<div className="nav">
+						<HomeLogo highlight={navsHighlight.Home} />
+					</div>
 				</Link>
 				<Link className="nav_element" to="/demo">
-					<DemoLogo highlight={navsHighlight.Demo} />
+					<div className="nav">
+						<DemoLogo highlight={navsHighlight.Demo} />
+					</div>
 				</Link>
 				<Link className="nav_element" to="/playerStats">
-					<PlayerStatsLogo highlight={navsHighlight.Player} />
+					<div className="nav">
+						<PlayerStatsLogo highlight={navsHighlight.Player} />
+					</div>
 				</Link>
 			</div>
 		</div>

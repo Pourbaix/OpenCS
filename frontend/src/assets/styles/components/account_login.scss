@@ -1,0 +1,57 @@
+.account_login_container {
+	display: flex;
+	flex-direction: column;
+	min-width: max-content;
+	border-radius: 5px;
+	overflow: hidden;
+	.nav {
+		display: flex;
+		z-index: 2;
+		width: 100%;
+		button {
+			padding: 10px 35px;
+			background: none;
+			cursor: pointer;
+			font-family: russo;
+			font-size: 20px;
+			border: 1px solid white;
+			width: 50%;
+			min-width: max-content;
+		}
+	}
+	.main_content {
+		width: 100%;
+		height: auto;
+		position: relative;
+		display: flex;
+		.gradient_bg_layer {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgb(40, 57, 127);
+			background: linear-gradient(
+				45deg,
+				rgba(40, 57, 127, 1) 0%,
+				rgba(36, 36, 36, 1) 20%,
+				rgba(36, 36, 36, 1) 85%,
+				rgba(251, 172, 24, 1) 100%
+			);
+			z-index: 1;
+		}
+		.content_layer {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			height: 100%;
+			background: rgba(255, 255, 255, 0.01);
+			backdrop-filter: blur(25px);
+			z-index: 2;
+			padding: 15px 20px;
+			h2 {
+				margin: 0;
+			}
+		}
+	}
+}

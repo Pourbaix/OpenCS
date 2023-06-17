@@ -1,0 +1,88 @@
+:root {
+	// font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	font-family: lexend;
+	line-height: 1.5;
+	font-weight: 400;
+
+	overflow-x: hidden;
+
+	color-scheme: light dark;
+	color: rgba(255, 255, 255, 0.87);
+	background-color: var(--main-bg);
+
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+
+	--main-bg: #212121;
+	--header-bg: #1a1a1a;
+	--bright-primary: #fbac18;
+	--bright-secondary: #28397f;
+
+	--main-text: #f1f1f1;
+
+	--nav-bar-width: 65px;
+}
+
+#root {
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+
+body {
+	margin: 0;
+	display: flex;
+	min-width: 320px;
+	min-height: 100vh;
+}
+
+h1,
+h2,
+h3 {
+	margin: 5px 0;
+}
+
+p {
+	margin: 5px 0;
+}
+
+::-webkit-scrollbar {
+	/* the scrollbar. */
+	width: 5px;
+	background: none;
+}
+::-webkit-scrollbar-button {
+	display: none;
+	/* the buttons on the scrollbar (arrows pointing upwards and downwards). */
+}
+::-webkit-scrollbar-thumb {
+	/* the draggable scrolling handle. */
+	background: rgb(61, 61, 61);
+}
+::-webkit-scrollbar-track {
+	/* the track (progress bar) of the scrollbar. */
+	background: none;
+}
+::-webkit-scrollbar-track-piece {
+	/* the track (progress bar) NOT covered by the handle. */
+	background: none;
+}
+
+@font-face {
+	font-family: csfont;
+	src: url("./assets/fonts/cs_regular.ttf");
+}
+
+@font-face {
+	font-family: russo;
+	src: url("./assets/fonts/RussoOne-Regular.ttf");
+}
+
+@font-face {
+	font-family: lexend;
+	src: url("./assets/fonts/Lexend-Regular.ttf");
+}

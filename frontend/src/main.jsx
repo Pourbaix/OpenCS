@@ -1,23 +1,43 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
+import {
+	BrowserRouter,
+	createBrowserRouter,
+	RouterProvider,
+} from "react-router-dom";
+
+// Pages & Components
+import Layout from "./Layout.jsx";
 import PlayerStats from "./pages/PlayerStats.jsx";
 import Home from "./pages/Home.jsx";
 import NotFound from "./pages/NotFound.jsx";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./index.css";
+import Demo from "./pages/Demo.jsx";
+
+// Main CSS
+import "./index.scss";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <Home />,
-	},
-	{
-		path: "/playerStats",
-		element: <PlayerStats />,
-	},
-	{
-		path: "*",
-		element: <NotFound />,
+		element: <Layout />,
+		children: [
+			{
+				path: "",
+				element: <Home />,
+			},
+			{
+				path: "playerStats",
+				element: <PlayerStats />,
+			},
+			{
+				path: "demo",
+				element: <Demo />,
+			},
+			{
+				path: "*",
+				element: <NotFound />,
+			},
+		],
 	},
 ]);
 

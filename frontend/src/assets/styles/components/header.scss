@@ -1,9 +1,13 @@
 .header_container {
-	width: 100%;
+	width: calc(100% - var(--nav-bar-width));
 	display: flex;
 	justify-content: center;
-	background: var(--header-bg);
-	backdrop-filter: blur(2px);
+	background: rgba(22, 22, 22, 0.65);
+	backdrop-filter: blur(5px);
+	position: fixed;
+	top: 0;
+	left: var(--nav-bar-width);
+	z-index: 50;
 	.content {
 		width: 100%;
 		max-width: 1800px;
@@ -12,15 +16,20 @@
 		align-items: center;
 		gap: 25px;
 		overflow: hidden;
-		padding-left: 80px;
 	}
 
 	.title {
 		font-size: 22px;
 		font-family: csfont;
-		color: var(--bright-primary);
-		animation: appear;
+		color: var(--main-text);
+		animation: appear 1s linear forwards;
 	}
 	@keyframes appear {
+		0% {
+			opacity: 0;
+		}
+		10% {
+			opacity: 1;
+		}
 	}
 }

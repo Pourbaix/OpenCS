@@ -1,13 +1,70 @@
 .home_page_container {
-	width: 100vw;
+	width: calc(100% - 80px);
 	display: flex;
-	flex-direction: column;
-	align-items: center;
-	.home_page_content {
+	flex-direction: row;
+	justify-content: flex-start;
+	padding: 40px;
+	gap: 3vw;
+	.presentation_block {
+		max-width: 50%;
+	}
+	.introduction {
 		display: flex;
 		flex-direction: column;
-		align-items: center;
-		gap: 25px;
-		margin-left: 80px;
+		width: 100%;
+		h2 {
+			font-size: 30px;
+			margin: 0;
+			text-align: center;
+			font-family: russo;
+		}
+		.description_block {
+			margin: 15px 0;
+			p {
+				text-align: left;
+				font-size: 15px;
+			}
+		}
+		.heading {
+			width: max-content;
+			position: relative;
+			h3 {
+				margin: 0 15px;
+				color: var(--main-bg);
+				font-family: russo;
+			}
+		}
+		.heading::after {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			transform: skewX(-20deg);
+			background-color: white;
+			z-index: -1;
+		}
+		.image {
+			width: 100%;
+			background: var(--main-bg);
+			min-height: 250px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.link {
+			display: flex;
+			justify-content: center;
+			margin-top: 15px;
+		}
+	}
+	.login_block {
+		width: 50%;
+		position: relative;
+		div {
+			top: 100px;
+			position: sticky;
+		}
 	}
 }

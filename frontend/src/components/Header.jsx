@@ -5,7 +5,7 @@ function Header() {
 		<div className="header_container">
 			<div className="content">
 				<div className="title">
-					<h2>OpenCS</h2>
+					<h2>Open-CS</h2>
 				</div>
 			</div>
 		</div>
