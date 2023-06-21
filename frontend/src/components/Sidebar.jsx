@@ -2,6 +2,7 @@ import "../assets/styles/components/sidebar.scss";
 import HomeLogo from "../atoms/HomeLogo.jsx";
 import DemoLogo from "../atoms/DemoLogo.jsx";
 import PlayerStatsLogo from "../atoms/PlayerStatsLogo.jsx";
+import TricksLogo from "../atoms/TricksLogo";
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -20,11 +21,13 @@ function Sidebar() {
 			Home: false,
 			Demo: false,
 			Player: false,
+			Tricks: false,
 		};
 		let transcript = {
 			Home: ["/"],
 			Demo: ["/demo"],
 			Player: ["/playerStats"],
+			Tricks: ["/tricks"],
 		};
 		for (let i of Object.keys(transcript)) {
 			if (transcript[i].includes(location.pathname)) {
@@ -49,6 +52,11 @@ function Sidebar() {
 				<Link className="nav_element" to="/playerStats">
 					<div className="nav">
 						<PlayerStatsLogo highlight={navsHighlight.Player} />
+					</div>
+				</Link>
+				<Link className="nav_element" to="/tricks">
+					<div className="nav">
+						<TricksLogo highlight={navsHighlight.Tricks} />
 					</div>
 				</Link>
 			</div>

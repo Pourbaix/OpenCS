@@ -60,6 +60,7 @@ class CsgoDemo():
         Method to disconnect from the logged account.
         """
         self.steam.logout()
+        print("disconnected !")
 
     def decodeShareCode(self, shareCode: str) -> dict:
         """

@@ -1,26 +1,42 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useFetch } from "../hooks/useFetch";
+import { getSteamSigninUrl, testToken } from "../services/actions";
 import "../assets/styles/components/account_login.scss";
 import Steam from "../assets/logo/steam.svg";
+import Banner from "../atoms/Banner.jsx";
 
 function AccountLogin() {
-	// const [mode, setMode] = useState(false);
-
-	const steamLoging = () => {
+	const [logged, setLogged] = useState(
+		localStorage.getItem("logged") === "true"
+	);
+	const steamLoging = async () => {
 		console.log("Login with steam");
+		let response = await getSteamSigninUrl();
+		let url = response.data.uri;
+		window.location.replace(url);
 	};
+
+	const testCookieToken = async () => {
+		let response = await testToken();
+		console.log(response);
+	};
+
+	useEffect(() => {
+		setLogged(localStorage.getItem("logged") === "true");
+	}, [localStorage.getItem("logged")]);
 
 	return (
 		<div className="account_login_container">
-			<div className="main_header">
-				<div className="gradient_bg_layer"></div>
-				<div className="content_layer">
-					<h2>Login to your account</h2>
-				</div>
-			</div>
+			<Banner title={"Login to your account"} />
 			<div className="login_methods">
 				<div className="method" id="steam" onClick={steamLoging}>
 					<img src={Steam} alt="Steam logo" />
 					<p>Login with STEAM</p>
+				</div>
+			</div>
+			<div className="login_methods">
+				<div className="method" onClick={testCookieToken}>
+					TestToken
 				</div>
 			</div>
 		</div>

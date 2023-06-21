@@ -14,6 +14,10 @@ function Home() {
 		console.log("Redirect to player stats");
 		navigate("/playerStats");
 	};
+	const redirectToTricks = () => {
+		console.log("Redirect to tricks");
+		navigate("/tricks");
+	};
 	return (
 		<div className="home_page_container">
 			<div className="presentation_block">
@@ -61,11 +65,28 @@ function Home() {
 								/>
 							</div>
 						</div>
+						<div className="description_block">
+							<div className="heading">
+								<h3>Tricks</h3>
+							</div>
+							<p>
+								Learn new things about the game from other
+								players and rate their posts. You can find new
+								grenade linups, wallbangs and much more !
+							</p>
+							<div className="image">Insert image</div>
+							<div className="link">
+								<TryButton
+									text={"Check best tips"}
+									callBack={redirectToTricks}
+								/>
+							</div>
+						</div>
 					</div>
 				</ContentBlock>
 			</div>
 			<div className="login_block">
-				<div>
+				<div className="sticky_div">
 					<AccountLogin />
 				</div>
 			</div>

@@ -1,7 +1,7 @@
 import Profile from "../components/Profile.jsx";
 import "../assets/styles/pages/player_stats.scss";
 import { useEffect, useRef, useState } from "react";
-import { getUserInfo } from "../services/api_calls.js";
+import { getUserInfo } from "../services/actions.js";
 
 function PlayerStats() {
 	const userID = useRef(null);

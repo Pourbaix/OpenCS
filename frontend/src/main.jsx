@@ -12,6 +12,7 @@ import PlayerStats from "./pages/PlayerStats.jsx";
 import Home from "./pages/Home.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import Demo from "./pages/Demo.jsx";
+import Tricks from "./pages/Tricks.jsx";
 
 // Main CSS
 import "./index.scss";
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
 			{
 				path: "demo",
 				element: <Demo />,
+			},
+			{
+				path: "tricks",
+				element: <Tricks />,
 			},
 			{
 				path: "*",

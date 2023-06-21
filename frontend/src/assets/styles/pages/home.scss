@@ -62,7 +62,7 @@
 	.login_block {
 		width: 50%;
 		position: relative;
-		div {
+		.sticky_div {
 			top: 100px;
 			position: sticky;
 		}

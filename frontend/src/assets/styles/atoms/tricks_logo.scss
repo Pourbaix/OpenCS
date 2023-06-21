@@ -1,0 +1,31 @@
+.tricks_logo_container {
+	width: 125%;
+	height: auto;
+	aspect-ratio: 1;
+	cursor: pointer;
+	margin-left: -5px;
+	.logo_fill {
+		transition: 0.5s fill;
+		fill: var(--bright-secondary);
+	}
+	.logo_stroke {
+		transition: 0.5s stroke;
+		stroke: var(--bright-secondary);
+	}
+	.enabled {
+		.logo_fill {
+			fill: var(--bright-primary);
+		}
+		.logo_stroke {
+			stroke: var(--bright-primary);
+		}
+	}
+}
+.tricks_logo_container:hover {
+	.logo_fill {
+		fill: var(--bright-primary);
+	}
+	.logo_stroke {
+		stroke: var(--bright-primary);
+	}
+}
