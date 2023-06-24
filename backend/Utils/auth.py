@@ -60,7 +60,7 @@ def check_if_connected(request: Request):
 
 def auth_required(func):
     @wraps(func)
-    def wrapper(request: Request):
+    async def wrapper(request: Request):
         if("token" in request.cookies):
             if verify_access_token(request.cookies["token"]):
                 print("all ok")

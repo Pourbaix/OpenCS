@@ -22,13 +22,9 @@ demo_class.doSteamLogin(os.getenv("ACCOUNT_USERNAME"), os.getenv("ACCOUNT_PASSWO
 def shutdown():
      demo_class.disconnect()
 
-## Might be removed
-@router.get("/decodeSharingCode/{sharingCode}")
-def getDecodedSahringCode(sharingCode: str) -> dict:
-    return decode(sharingCode)
 
 @router.get("/retrieveInformations/{sharingCode}")
-def getMatchInfo(sharingCode: str) -> dict:
+async def getMatchInfo(sharingCode: str) -> dict:
     decoded = demo_class.decodeShareCode(sharingCode)
     match = demo_class.getMatch(decoded)
     if (match):

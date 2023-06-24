@@ -10,7 +10,7 @@ load_dotenv()
 router = APIRouter()
 
 @router.get("/getInfo/{userId}")
-def getUserInfo(userId: int) -> dict:
+async def getUserInfo(userId: int) -> dict:
     instance = SteamAPI(os.getenv("STEAM_API_KEY"))
     data = dict(instance.getUserProfile(userId).json())
     return data

@@ -18,13 +18,13 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 1440
 router = APIRouter()
 
 @router.get("/")
-def authentificate(): 
+async def authentificate(): 
     ## Used to generate the steam link and allow the user to auth via steam service 
     steamlogin = SteamSignIn()
     return {"uri": f"https://steamcommunity.com/openid/login?{steamlogin.ConstructURL(os.getenv('BACKEND_DOMAIN') + '/auth/validate/')}"}
 
 @router.get("/validate/", response_class=RedirectResponse)
-def validateAuth(request: Request):
+async def validateAuth(request: Request):
     ## This is called once the steam auth is done 
     steamLogin = SteamSignIn()
     ## Verify information send from steam after auth 
@@ -42,5 +42,5 @@ def validateAuth(request: Request):
 
 @router.get("/testToken/")
 @auth_required
-def testAuth(request: Request):
+async def testAuth(request: Request):
     return {"logged": True}
