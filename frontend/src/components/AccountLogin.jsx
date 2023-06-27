@@ -1,14 +1,9 @@
-import { useEffect, useState } from "react";
-import { useFetch } from "../hooks/useFetch";
 import { getSteamSigninUrl, testToken } from "../services/actions";
 import "../assets/styles/components/account_login.scss";
 import Steam from "../assets/logo/steam.svg";
 import Banner from "../atoms/Banner.jsx";
 
 function AccountLogin() {
-	const [logged, setLogged] = useState(
-		localStorage.getItem("logged") === "true"
-	);
 	const steamLoging = async () => {
 		console.log("Login with steam");
 		let response = await getSteamSigninUrl();
@@ -20,10 +15,6 @@ function AccountLogin() {
 		let response = await testToken();
 		console.log(response);
 	};
-
-	useEffect(() => {
-		setLogged(localStorage.getItem("logged") === "true");
-	}, [localStorage.getItem("logged")]);
 
 	return (
 		<div className="account_login_container">

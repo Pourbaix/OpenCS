@@ -1,0 +1,47 @@
+.loading_container {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	.animated_dots {
+		height: 100%;
+		aspect-ratio: 1;
+		background: var(--main-text);
+		position: relative;
+		overflow: visible;
+		animation: loadingAnim 1.5s ease-in-out infinite;
+		border-radius: 45%;
+	}
+	.animated_dots::before,
+	.animated_dots::after {
+		content: "";
+		position: absolute;
+		height: 100%;
+		aspect-ratio: 1;
+		background: var(--main-text);
+		top: 0;
+		border-radius: 45%;
+	}
+	.animated_dots::before {
+		left: -20px;
+		transform-origin: right;
+		margin-right: 25px;
+	}
+	.animated_dots::after {
+		right: -20px;
+		transform-origin: left;
+		margin-left: 25px;
+	}
+
+	@keyframes loadingAnim {
+		0% {
+			transform: rotate(0deg);
+		}
+		50% {
+			transform: rotate(180deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+}

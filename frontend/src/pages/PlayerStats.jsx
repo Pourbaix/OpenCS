@@ -9,7 +9,7 @@ function PlayerStats() {
 
 	const handleChange = async () => {
 		if (userID.current.value) {
-			let reponse = await getUserInfo(userID.current.value);
+			let reponse = await getUserInfo(false, userID.current.value);
 			setUserInfo(reponse.data.response.players[0]);
 		}
 	};

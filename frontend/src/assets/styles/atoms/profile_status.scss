@@ -1,0 +1,16 @@
+.profile_status_container {
+	display: flex;
+	width: max-content;
+	align-items: center;
+	gap: 6px;
+	.status_point {
+		width: 10px;
+		aspect-ratio: 1;
+		border-radius: 50%;
+		background: grey;
+	}
+	.status_indicator {
+		color: grey;
+		font-size: 18px;
+	}
+}

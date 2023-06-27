@@ -2,39 +2,62 @@ import axios from "axios";
 
 let base_url = "http://localhost:8000/";
 
-async function getUserInfo(steamID) {
-	let response = await axios.get(base_url + "user/getInfo/" + steamID, {
-		headers: { "Acess-Control-Allow-Origin": "*" },
-	});
-	return response;
+async function getUserInfo(current, steamID = "") {
+	// "current" defines if we want to recover info about the current logged user
+	if (current) {
+		let url = base_url + "user/getCurrentUserInfo/";
+		let response = await axios.get(url, {
+			withCredentials: true,
+		});
+		return response;
+	} else {
+		let url = base_url + "user/getUserInfo/" + steamID;
+		let response = await axios.get(url);
+		return response;
+	}
+}
+
+async function getUserPlayerOverallStats(current, steamID = "") {
+	if (current) {
+		let url = base_url + "user/getCurrentPlayerOverallStats/";
+		let response = await axios.get(url, {
+			withCredentials: true,
+		});
+		return response;
+	} else {
+		// When requesting for another user
+	}
+}
+
+async function getPlayerRecentlyPlayedGames(current, steamID = "") {
+	if (current) {
+		let url = base_url + "user/getCurrentPlayerRecentlyPlayedGames/";
+		let response = await axios.get(url, {
+			withCredentials: true,
+		});
+		return response;
+	} else {
+		// When requesting for another user
+	}
 }
 
 async function getSteamSigninUrl() {
-	let response = await axios.get(base_url + "auth/", {
-		headers: { "Acess-Control-Allow-Origin": "*" },
-	});
+	let response = await axios.get(base_url + "auth/");
 	return response;
 }
 
 async function testToken() {
-	let response = { status: "", message: "" };
 	let url = base_url + "auth/testToken/";
-	axios
-		.get(url, {
-			headers: {
-				"Acess-Control-Allow-Origin": "*",
-			},
-			withCredentials: true,
-		})
-		.then(async (res) => {
-			response.status = "OK";
-			response.message = await res.data;
-		})
-		.catch((err) => {
-			response.status = "ERROR";
-			response.message = err;
-		});
+	let response = await axios.get(url, {
+		withCredentials: true,
+	});
 	return response;
 }
 
-export { getUserInfo, getSteamSigninUrl, testToken };
+export {
+	getUserInfo,
+	getUserPlayerOverallStats,
+	getPlayerRecentlyPlayedGames,
+	getSteamSigninUrl,
+	testToken,
+};

@@ -1,11 +1,28 @@
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useMemo } from "react";
 import "../assets/styles/pages/home.scss";
+
+// Components
 import TryButton from "../atoms/TryButton";
 import ContentBlock from "../components/ContentBlock";
 import AccountLogin from "../components/AccountLogin";
+import HomeProfile from "../components/HomeProfile";
+
+// API functions
+import {
+	getUserInfo,
+	getPlayerRecentlyPlayedGames,
+} from "../services/actions.js";
 
 function Home() {
+	const [logged, setLogged] = useState(
+		localStorage.getItem("logged") === "true"
+	);
+	const [playerGameStats, setPlayerGameStats] = useState({});
+	const [userInfo, setUserInfo] = useState({});
 	let navigate = useNavigate();
+
+	// Navigate callbacks
 	const redirectToDemo = () => {
 		console.log("Redirect to demo");
 		navigate("/demo");
@@ -18,6 +35,42 @@ function Home() {
 		console.log("Redirect to tricks");
 		navigate("/tricks");
 	};
+
+	// Player games data recovery
+	const recoverPlayerPlayedGames = async () => {
+		let res = await getPlayerRecentlyPlayedGames(true);
+		if (await res.data.response) {
+			return await res.data.response;
+		} else {
+			return { error: "error" };
+		}
+	};
+
+	// User info recovery
+	const recoverUserInfo = async () => {
+		let res = await getUserInfo(true);
+		if (await res.data) {
+			return res.data.response.players[0];
+		} else {
+			return { error: "error" };
+		}
+	};
+
+	const recoverUserProfile = async () => {
+		if (logged) {
+			setPlayerGameStats(await recoverPlayerPlayedGames());
+			setUserInfo(await recoverUserInfo());
+		}
+	};
+
+	useEffect(() => {
+		setLogged(localStorage.getItem("logged") === "true");
+	}, [localStorage.getItem("logged")]);
+
+	useEffect(() => {
+		recoverUserProfile();
+	}, []);
+
 	return (
 		<div className="home_page_container">
 			<div className="presentation_block">
@@ -87,7 +140,14 @@ function Home() {
 			</div>
 			<div className="login_block">
 				<div className="sticky_div">
-					<AccountLogin />
+					{logged ? (
+						<HomeProfile
+							profileStats={playerGameStats}
+							userInfo={userInfo}
+						/>
+					) : (
+						<AccountLogin />
+					)}
 				</div>
 			</div>
 		</div>

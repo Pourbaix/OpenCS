@@ -60,11 +60,14 @@ def check_if_connected(request: Request):
 
 def auth_required(func):
     @wraps(func)
-    async def wrapper(request: Request):
+    async def wrapper(*args, **kwargs):
+        if("request" not in kwargs.keys()):
+            raise Exception("The route should have a Request object in her parameters")
+        request = kwargs["request"]
         if("token" in request.cookies):
             if verify_access_token(request.cookies["token"]):
                 print("all ok")
-                return func
+                return await func(*args, **kwargs)
         else:
             raise credentials_exception
     return wrapper
