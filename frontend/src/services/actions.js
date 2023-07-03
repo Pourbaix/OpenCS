@@ -2,6 +2,11 @@ import axios from "axios";
 
 let base_url = "http://localhost:8000/";
 
+//////////////
+// GET
+//////////////
+
+// retreieve user informations such as username and profile pic
 async function getUserInfo(current, steamID = "") {
 	// "current" defines if we want to recover info about the current logged user
 	if (current) {
@@ -17,6 +22,7 @@ async function getUserInfo(current, steamID = "") {
 	}
 }
 
+// Get user global ingame stats
 async function getUserPlayerOverallStats(current, steamID = "") {
 	if (current) {
 		let url = base_url + "user/getCurrentPlayerOverallStats/";
@@ -41,8 +47,12 @@ async function getPlayerRecentlyPlayedGames(current, steamID = "") {
 	}
 }
 
-async function getSteamSigninUrl() {
-	let response = await axios.get(base_url + "auth/");
+async function getSteamSigninUrl(frontendRoute) {
+	let response = await axios.get(base_url + "auth/", {
+		params: {
+			frontendRouter: frontendRoute,
+		},
+	});
 	return response;
 }
 
@@ -54,10 +64,26 @@ async function testToken() {
 	return response;
 }
 
+//////////////
+// POST
+//////////////
+
+// Configure match tracking for a user
+async function postMatchTrackingConfig(authCode, matchSharecode) {
+	let url = base_url + "user/setCSGOMatchHistory/";
+	let body = { matchShareCode: matchSharecode, authenticationCode: authCode };
+	let response = await axios.post(url, body, {
+		withCredentials: true,
+		"Content-Type": "application/json",
+	});
+	return response;
+}
+
 export {
 	getUserInfo,
 	getUserPlayerOverallStats,
 	getPlayerRecentlyPlayedGames,
 	getSteamSigninUrl,
 	testToken,
+	postMatchTrackingConfig,
 };

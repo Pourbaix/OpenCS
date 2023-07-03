@@ -51,3 +51,14 @@ class SteamAPI:
         }
         response = self.httpClient.get(url, params=params)
         return response
+    
+    def getNextMatch(self, userId, authCode, shareCode):
+        url = self.baseUrl + "ICSGOPlayers_730/GetNextMatchSharingCode/v1/"
+        params = {
+            "key": self.apiKey,
+            "steamid": userId,
+            "steamidkey": authCode,
+            "knowncode": shareCode
+        }
+        response = self.httpClient.get(url, params=params)
+        return response

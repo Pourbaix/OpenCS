@@ -62,7 +62,7 @@ def auth_required(func):
     @wraps(func)
     async def wrapper(*args, **kwargs):
         if("request" not in kwargs.keys()):
-            raise Exception("The route should have a Request object in her parameters")
+            raise Exception("The route should have a Request object in his parameters")
         request = kwargs["request"]
         if("token" in request.cookies):
             if verify_access_token(request.cookies["token"]):

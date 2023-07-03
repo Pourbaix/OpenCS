@@ -16,6 +16,7 @@ from google.protobuf.json_format import MessageToJson
 ## Used to emulate steam and csgo
 from steam.client import SteamClient
 from steam.guard import SteamAuthenticator
+from steam.steamid import SteamID
 from csgo.client import CSGOClient
 from csgo.sharecode import decode
 #########################################################
@@ -76,6 +77,22 @@ class CsgoDemo():
 
         self.cs.request_full_match_info(matchid=mid, outcomeid=od, token=tok)
         data, = self.cs.wait_event('full_match_info', timeout=10)
+        return data
+    
+    def getLiveGameForUser(self, steamId): 
+        identifier = SteamID(steamId)
+        self.cs.request_current_live_games()
+        data, = self.cs.wait_event("current_live_games", timeout=5)
+        return data
+    
+    def getPlayerProfile(self, steamId):
+        ## Converting steamid to accountid to recover csgo player stats
+        identifier = SteamID(steamId)
+        print(identifier.account_id, self.cs.account_id)
+        ## Requesting informations
+        self.cs.request_player_profile(identifier.account_id, request_level=64)
+        data, = self.cs.wait_event('player_profile', timeout=3)
+        print(data)
         return data
     
 ###################################################################   

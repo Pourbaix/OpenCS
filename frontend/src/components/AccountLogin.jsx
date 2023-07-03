@@ -6,7 +6,7 @@ import Banner from "../atoms/Banner.jsx";
 function AccountLogin() {
 	const steamLoging = async () => {
 		console.log("Login with steam");
-		let response = await getSteamSigninUrl();
+		let response = await getSteamSigninUrl("");
 		let url = response.data.uri;
 		window.location.replace(url);
 	};

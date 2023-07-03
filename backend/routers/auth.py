@@ -18,13 +18,17 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 1440
 router = APIRouter()
 
 @router.get("/")
-async def authentificate(): 
+async def authentificate(request: Request): 
     ## Used to generate the steam link and allow the user to auth via steam service 
     steamlogin = SteamSignIn()
-    return {"uri": f"https://steamcommunity.com/openid/login?{steamlogin.ConstructURL(os.getenv('BACKEND_DOMAIN') + '/auth/validate/')}"}
+    frontendRoute = request.query_params.get("frontendRouter")
+    if (frontendRoute):
+        return {"uri": f"https://steamcommunity.com/openid/login?{steamlogin.ConstructURL(os.getenv('BACKEND_DOMAIN') + '/auth/validate/' + frontendRoute)}"}
+    return {"uri": f"https://steamcommunity.com/openid/login?{steamlogin.ConstructURL(os.getenv('BACKEND_DOMAIN') + '/auth/validate/undefined')}"}
 
-@router.get("/validate/", response_class=RedirectResponse)
-async def validateAuth(request: Request):
+
+@router.get("/validate/{frontendRoute}", response_class=RedirectResponse)
+async def validateAuth(request: Request, frontendRoute):
     ## This is called once the steam auth is done 
     steamLogin = SteamSignIn()
     ## Verify information send from steam after auth 
@@ -34,7 +38,10 @@ async def validateAuth(request: Request):
             access_token = create_access_token(
                 data={"user": steamID}, expires_delta=access_token_expires
             )
-            response = RedirectResponse(url=os.getenv("FRONTEND_DOMAIN"), status_code=303)
+            if frontendRoute == "undefined":
+                response = RedirectResponse(url=f"{os.getenv('FRONTEND_DOMAIN')}", status_code=303)
+            else:
+                response = RedirectResponse(url=f"{os.getenv('FRONTEND_DOMAIN')}/{frontendRoute}", status_code=303)                 
             response.set_cookie("token", value=access_token, max_age=ACCESS_TOKEN_EXPIRE_MINUTES * 60, domain="localhost")
             return response
     else:

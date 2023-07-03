@@ -30,3 +30,17 @@ async def getMatchInfo(sharingCode: str) -> dict:
     if (match):
         return json.loads(MessageToJson(match))
     return {"error": "Something went wrong when extracting match data"}
+
+@router.get("/playerProfile/{steamId}")
+async def retrievePlayerProfile(steamId):
+    profile = demo_class.getPlayerProfile(steamId)
+    if (profile):
+        return json.loads(MessageToJson(profile))
+    return {"error": "Something went wrong when extracting profile data"}
+
+@router.get("/lastMatchList/{steamId}")
+async def retrievePlayerProfile(steamId):
+    matchlist = demo_class.getLiveGameForUser(steamId)
+    if (matchlist):
+        return json.loads(MessageToJson(matchlist))
+    return {"error": "Something went wrong when extracting profile data"}

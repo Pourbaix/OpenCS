@@ -44,7 +44,7 @@ function TricksLogo(props) {
 							className="logo_stroke"
 						/>
 					</g>
-					<path
+					{/* <path
 						id="Tracé_9"
 						data-name="Tracé 9"
 						d="M1150.377,776l73,62.788Z"
@@ -53,7 +53,7 @@ function TricksLogo(props) {
 						stroke="#2d2d2d"
 						strokeWidth="2"
 						className="logo_stroke"
-					/>
+					/> */}
 				</g>
 			</svg>
 		</div>

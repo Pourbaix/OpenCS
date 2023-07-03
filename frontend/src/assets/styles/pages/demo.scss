@@ -4,4 +4,185 @@
 	flex-direction: column;
 	align-items: center;
 	gap: 25px;
+	.error {
+		font-size: 15px;
+		margin: 0;
+		color: red;
+	}
+	.demo_content {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		flex-wrap: wrap;
+		width: calc(100%);
+		gap: 50px;
+		.section {
+			width: 40%;
+			min-width: 450px;
+			display: flex;
+			flex-direction: column;
+		}
+		.match_history {
+			background: var(--header-bg);
+			padding: 10px;
+			border-radius: 5px;
+			box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+			h1 {
+				font-family: russo;
+				color: var(--main-bg);
+				background: var(--main-text);
+				margin: 0;
+				border-radius: 2px;
+			}
+			.match_tracking_config {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				h2 {
+					margin-top: 15px;
+					text-decoration: underline;
+				}
+				h4 {
+					margin: 0;
+					margin-top: 5px;
+					font-style: italic;
+					color: var(--bright-secondary);
+					cursor: pointer;
+					transition: color 0.5s;
+				}
+				h4:hover {
+					color: var(--bright-primary);
+				}
+				.code_area {
+					margin: 10px 0;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					gap: 25px;
+					.input_text {
+						position: relative;
+						overflow: visible;
+						input {
+							outline: none;
+							border: none;
+							font-size: 15px;
+							padding: 15px;
+							text-align: center;
+							background: var(--main-bg);
+						}
+						input:focus {
+							outline: none;
+						}
+					}
+					.input_text::after,
+					.input_text::before {
+						position: absolute;
+						width: 20px;
+						height: 20px;
+						aspect-ratio: 1;
+						background: none;
+						content: "";
+						transition: transform 0.2s;
+					}
+					.input_text::before {
+						top: -5px;
+						left: -5px;
+						border-left: 1px solid var(--bright-secondary);
+						border-top: 1px solid var(--bright-secondary);
+					}
+					.input_text::after {
+						bottom: -5px;
+						right: -5px;
+						border-right: 1px solid var(--bright-secondary);
+						border-bottom: 1px solid var(--bright-secondary);
+					}
+					.input_text:hover::after,
+					.input_text:active::after {
+						transform: translate(2px, 2px);
+						border-right: 1px solid var(--bright-primary);
+						border-bottom: 1px solid var(--bright-primary);
+					}
+					.input_text:hover::before,
+					.input_text:active::before {
+						transform: translate(-2px, -2px);
+						border-left: 1px solid var(--bright-primary);
+						border-top: 1px solid var(--bright-primary);
+					}
+					button {
+						border: none;
+						background: none;
+						cursor: pointer;
+						padding: 10px;
+						font-size: 15px;
+						font-family: russo;
+						background: var(--main-bg);
+						transition: 0.1s transform;
+						border-radius: 2px;
+					}
+					button:hover {
+						transform: scale(1.05);
+						outline: 1px solid var(--main-text);
+					}
+				}
+				.help_div {
+					width: 100%;
+					height: 0;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					transition: height 0.5s ease;
+					background: var(--main-bg);
+					overflow: hidden;
+					margin-top: 15px;
+					position: relative;
+					* {
+						margin: 0;
+					}
+					h3 {
+						margin-top: 5px;
+						width: 100%;
+						border-bottom: 1px solid white;
+						margin-bottom: 15px;
+						padding-bottom: 5px;
+					}
+					.explanation {
+						display: flex;
+						flex-direction: row;
+						width: calc(100% - 10px);
+						padding: 5px;
+						gap: 5px;
+						.text {
+							text-align: left;
+							width: 100%;
+							font-size: 15px;
+						}
+						.gif_display {
+							width: 100%;
+							max-width: 50%;
+							img {
+								width: 100%;
+								height: auto;
+							}
+						}
+					}
+				}
+			}
+			.login_request {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				button {
+					background: none;
+					border: none;
+					padding: 0;
+					cursor: pointer;
+					min-width: 200px;
+					img {
+						width: 100%;
+						height: auto;
+					}
+				}
+			}
+		}
+	}
 }
