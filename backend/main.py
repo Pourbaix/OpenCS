@@ -6,10 +6,24 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from routers import match, user, auth
 
+from Database.models import Base
+from Database.database import engine, Session
+
 # List of accepted origins for requests 
 origins = [
     "*"
 ]
+
+# Sync database and ORM
+Base.metadata.create_all(bind=engine)
+
+# Dependency
+def get_db():
+    db = Session()
+    try:
+        yield db
+    finally:
+        db.close()
 
 app = FastAPI()
 

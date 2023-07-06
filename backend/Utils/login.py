@@ -7,6 +7,8 @@ from steam.guard import SteamAuthenticator
 import os 
 from dotenv import load_dotenv
 
+load_dotenv()
+
 ## This piece of code can be used to recover the secrets from an account 
 ## Those can then be used to generate 2FA SteamGuard codes
 
