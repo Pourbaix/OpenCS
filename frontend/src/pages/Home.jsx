@@ -13,6 +13,7 @@ import {
 	getUserInfo,
 	getPlayerRecentlyPlayedGames,
 } from "../services/actions.js";
+import { readCache, writeCache } from "../utils/cache";
 
 function Home() {
 	const [logged, setLogged] = useState(
@@ -38,21 +39,35 @@ function Home() {
 
 	// Player games data recovery
 	const recoverPlayerPlayedGames = async () => {
-		let res = await getPlayerRecentlyPlayedGames(true);
-		if (await res.data.response) {
-			return await res.data.response;
+		let cachedData = readCache("getPlayerRecentlyPlayedGames");
+		if (cachedData) {
+			return cachedData;
 		} else {
-			return { error: "error" };
+			let res = await getPlayerRecentlyPlayedGames(true);
+			if (await res.data.response) {
+				let data = await res.data.response;
+				writeCache("getPlayerRecentlyPlayedGames", data, 300000);
+				return data;
+			} else {
+				return { error: "error" };
+			}
 		}
 	};
 
 	// User info recovery
 	const recoverUserInfo = async () => {
-		let res = await getUserInfo(true);
-		if (await res.data) {
-			return res.data.response.players[0];
+		let cachedData = readCache("getUserInfo");
+		if (cachedData) {
+			return cachedData;
 		} else {
-			return { error: "error" };
+			let res = await getUserInfo(true);
+			if (await res.data) {
+				let data = res.data.response.players[0];
+				writeCache("getUserInfo", data, 300000);
+				return data;
+			} else {
+				return { error: "error" };
+			}
 		}
 	};
 

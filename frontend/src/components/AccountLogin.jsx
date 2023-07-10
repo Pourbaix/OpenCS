@@ -3,11 +3,13 @@ import "../assets/styles/components/account_login.scss";
 import Steam from "../assets/logo/steam.svg";
 import Banner from "../atoms/Banner.jsx";
 
+import { initCache } from "../utils/cache";
+
 function AccountLogin() {
 	const steamLoging = async () => {
-		console.log("Login with steam");
 		let response = await getSteamSigninUrl("");
 		let url = response.data.uri;
+		initCache();
 		window.location.replace(url);
 	};
 
