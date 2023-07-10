@@ -47,6 +47,14 @@ async function getPlayerRecentlyPlayedGames(current, steamID = "") {
 	}
 }
 
+async function getUserMatchTrackingConfig() {
+	let url = base_url + "user/matchTrackingConfig/";
+	let response = await axios.get(url, {
+		withCredentials: true,
+	});
+	return response;
+}
+
 async function getSteamSigninUrl(frontendRoute) {
 	let response = await axios.get(base_url + "auth/", {
 		params: {
@@ -83,6 +91,7 @@ export {
 	getUserInfo,
 	getUserPlayerOverallStats,
 	getPlayerRecentlyPlayedGames,
+	getUserMatchTrackingConfig,
 	getSteamSigninUrl,
 	testToken,
 	postMatchTrackingConfig,

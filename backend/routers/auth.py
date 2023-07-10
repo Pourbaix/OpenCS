@@ -6,6 +6,9 @@ from fastapi.responses  import RedirectResponse
 
 from Utils.auth import create_access_token, verify_access_token, auth_required
 
+from Database.queries import get_user, create_user
+from Database.database import Session
+
 ## loading env
 import os 
 from dotenv import load_dotenv
@@ -16,6 +19,8 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 1440
 
 ## Defining endpoints 
 router = APIRouter()
+
+db = Session()
 
 @router.get("/")
 async def authentificate(request: Request): 
@@ -34,6 +39,11 @@ async def validateAuth(request: Request, frontendRoute):
     ## Verify information send from steam after auth 
     steamID = steamLogin.ValidateResults(request.query_params)
     if steamID:
+            if not get_user(db, steamID):     
+                print(f"New user {steamID} detected!")
+                response = create_user(db, steamID)
+                if not response:
+                    return RedirectResponse(url=f"{os.getenv('FRONTEND_DOMAIN')}/fail2auth", status_code=303)
             access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
             access_token = create_access_token(
                 data={"user": steamID}, expires_delta=access_token_expires

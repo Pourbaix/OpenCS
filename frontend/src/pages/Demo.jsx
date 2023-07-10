@@ -5,6 +5,7 @@ import "../assets/styles/pages/demo.scss";
 import {
 	getSteamSigninUrl,
 	postMatchTrackingConfig,
+	getUserMatchTrackingConfig,
 } from "../services/actions.js";
 
 import SteamLogin from "../assets/img/sits_small.png";
@@ -14,6 +15,7 @@ function Demo() {
 	const [logged, setLogged] = useState(
 		localStorage.getItem("logged") === "true"
 	);
+	const [loadingMatchTracking, setLoadingMatchTracking] = useState(true);
 	const [autoMatchConfig, setAutoMatchConfig] = useState(false);
 	const [historicConfigError, setHistoricConfigError] = useState("");
 
@@ -22,7 +24,6 @@ function Demo() {
 	const matchSharecode = useRef(null);
 
 	const steamLoging = async () => {
-		console.log("Login with steam");
 		let response = await getSteamSigninUrl("demo");
 		let url = response.data.uri;
 		window.location.replace(url);
@@ -79,6 +80,19 @@ function Demo() {
 		setLogged(localStorage.getItem("logged") === "true");
 	}, [localStorage.getItem("logged")]);
 
+	useEffect(() => {
+		if (logged) {
+			setLoadingMatchTracking(true);
+			getUserMatchTrackingConfig().then((res) => {
+				console.log(res);
+				if (res.data.config.auth_code && res.data.config.last_match) {
+					setAutoMatchConfig(true);
+				}
+				setLoadingMatchTracking(false);
+			});
+		}
+	}, []);
+
 	return (
 		<div className="demo_container">
 			<h1>Demo viewer</h1>
@@ -87,7 +101,9 @@ function Demo() {
 					<h1>Your match history</h1>
 					{logged ? (
 						autoMatchConfig ? (
-							<p>Your match list:</p>
+							<h4>Your match list:</h4>
+						) : loadingMatchTracking ? (
+							<div>Loading</div>
 						) : (
 							<div className="match_tracking_config">
 								<h2>Configure match tracking</h2>

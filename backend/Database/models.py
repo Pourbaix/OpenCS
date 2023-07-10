@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime, Text, Boolean, JSON, Table, ForeignKey
+from sqlalchemy import Column, Integer, BigInteger, String, DateTime, Text, Boolean, JSON, Table, ForeignKey
 from sqlalchemy.orm import declarative_base, relationship
 from datetime import datetime
 
@@ -7,14 +7,14 @@ Base = declarative_base()
 user_match = Table(
     "user_match",
     Base.metadata,
-    Column("user_steamid", Integer, ForeignKey('users.steam_id')),
+    Column("user_steamid", BigInteger, ForeignKey('users.steam_id')),
     Column("match_sharecode", String(35), ForeignKey('matches.sharecode'))
 )
 
 class User(Base):
     __tablename__ = "users"
 
-    steam_id = Column(Integer, primary_key=True)
+    steam_id = Column(BigInteger, primary_key=True)
     match_tracking_code = Column(String(20), default=None, nullable=True)
     last_match_code = Column(String(35), default=None, nullable=True)
     created_on = Column(DateTime, default=datetime.now)
